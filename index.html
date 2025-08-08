@@ -577,6 +577,32 @@ Your ${name}`
     </footer>
 
     <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            navMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) { // 768px is the md breakpoint in Tailwind
+                    navMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Hide mobile menu when resizing to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                navMenu.classList.remove('hidden');
+            } else {
+                navMenu.classList.add('hidden');
+            }
+        });
+
         const carouselImages = [
             "assets/banner_image_1.jpg", 
             "assets/banner_image_2.avif",
